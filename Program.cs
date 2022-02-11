@@ -33,7 +33,7 @@ namespace AddressBookUsingDB
 
             //int flag = connector.Delete("sumit");
 
-            //----- Uc6 ----
+            //----- Uc6 ----    Uc7
 
             connector.SelectByCityORState("ahamadnagar");
 
