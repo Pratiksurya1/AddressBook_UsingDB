@@ -16,3 +16,8 @@ SELECT * FROM address_book
 
 ------ UC9 ----- Address Book with name and Type
 ALTER TABLE address_book ADD type varchar(13),name varchar(10)
+
+UPDATE address_book SET type='Friends' WHERE Id=6
+
+------ UC10 ----- 
+SELECT COUNT(type)FROM address_book GROUP BY type

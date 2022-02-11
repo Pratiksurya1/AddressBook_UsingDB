@@ -204,7 +204,5 @@ namespace AddressBookUsingDB
                 connection.Close();
             }
         }
-        
-        
     }
 }
