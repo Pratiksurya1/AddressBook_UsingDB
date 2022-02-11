@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b71af5cc-d1de-479a-9a5d-5d35d0d860ac": {
+      "ProjectGuid": "b71af5cc-d1de-479a-9a5d-5d35d0d860ac",
+      "DisplayName": "AddressBook_DB",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
