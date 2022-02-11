@@ -89,7 +89,11 @@ namespace AddressBookUsingDB
                 Console.WriteLine(ex.Message);
                 return 0;
             }
-            
+            finally
+            {
+                connection.Close();
+            }
+
         }
         public override int Delete(string position)
         {
@@ -112,11 +116,14 @@ namespace AddressBookUsingDB
                 Console.WriteLine(ex.Message);
                 return 0;
             }
+            finally
+            {
+                connection.Close();
+            }
         }
         public override void SelectByCityORState(String location)
         {
             SqlConnection connection = GetDBConnection();
-           // String queary = "select * from address_book";
             try
             {
                 using (connection)
@@ -150,7 +157,54 @@ namespace AddressBookUsingDB
             {
                 Console.WriteLine(ex.Message);
             }
+            finally
+            {
+                connection.Close();
+            }
         }
 
+        public override void SortByCityORState(string location)
+        {
+            SqlConnection connection = GetDBConnection();
+            try
+            {
+                using (connection)
+                {
+                    AddressBookModel model = new AddressBookModel();
+                    SqlCommand command = new SqlCommand("InsertContactsToAddressBook", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("city", location);
+                    command.Parameters.AddWithValue("state", location);
+                    command.Parameters.AddWithValue("stmnt", "Sortasc");
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        int count = 0;
+                        while (reader.Read())
+                        {
+                            count++;
+                            Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}", reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString(), reader[7].ToString(), reader[8].ToString());
+
+                        }
+                        Console.WriteLine(count + " Person From " + location);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Data Found..");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        
+        
     }
 }

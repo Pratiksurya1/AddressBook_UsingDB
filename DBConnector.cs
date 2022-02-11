@@ -13,12 +13,12 @@ namespace AddressBookUsingDB
         {         
             return new  SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AddressBook;Integrated Security=True");
         }
-
         public abstract int Insert(AddressBookModel model);
 
         public abstract int Update(AddressBookModel model, String position);
         public abstract int Delete(String position);
         public abstract void SelectByCityORState(String location);
+        public abstract void SortByCityORState(String location);
        
 }
 }

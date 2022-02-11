@@ -35,7 +35,11 @@ namespace AddressBookUsingDB
 
             //----- Uc6 ----    Uc7
 
-            connector.SelectByCityORState("ahamadnagar");
+            //connector.SelectByCityORState("ahamadnagar");
+
+            //---- Uc8 ----
+            connector.SortByCityORState("hyderabad");
+            
 
         }
     }
