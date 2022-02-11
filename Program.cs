@@ -31,7 +31,11 @@ namespace AddressBookUsingDB
 
             //----- Uc5 -----
 
-            int flag = connector.Delete("sumit");
+            //int flag = connector.Delete("sumit");
+
+            //----- Uc6 ----
+
+            connector.SelectByCityORState("ahamadnagar");
 
         }
     }
