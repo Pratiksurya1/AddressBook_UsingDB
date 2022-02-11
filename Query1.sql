@@ -13,3 +13,6 @@ email varchar(30)
 )
 
 SELECT * FROM address_book
+
+------ UC9 ----- Address Book with name and Type
+ALTER TABLE address_book ADD type varchar(13),name varchar(10)
