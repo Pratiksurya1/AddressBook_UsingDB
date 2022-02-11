@@ -11,17 +11,18 @@ namespace AddressBookUsingDB
         public static void Main(String []args)
         {
             AddressBookModel model = new AddressBookModel();
-            model.firstName = "rohit";
+            model.firstName = "sumit";
             model.lastName = "jadhav";
             model.address= "Pu-154";
             model.city = "pune";
-            model.state = "mharashtra";
+            model.state = "mharashtra";  
             model.zip = "425001";
             model.mobileNo = "4567891230";
             model.email = "rohit665@gmail.com";
 
             DBConnector connector = new DBHandler();
-            int flag=connector.Insert(model);
+            //int flag=connector.Insert(model);
+            int flag = connector.Update(model, "rohit");
 
             if (flag != 0)
             {

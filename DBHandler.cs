@@ -13,7 +13,7 @@ namespace AddressBookUsingDB
         {
             SqlConnection connection = GetDBConnection();
             try
-            {
+            {  
                 if (model != null)
                 {
                     using (connection)
@@ -45,10 +45,46 @@ namespace AddressBookUsingDB
             finally
             {
                 connection.Close();
+            }     
+        }
+
+        public override int Update(AddressBookModel model, String position)
+        {
+            SqlConnection connection = GetDBConnection();
+            try
+            {
+                if (model != null)
+                {
+                    using (connection)
+                    {
+                        SqlCommand command = new SqlCommand("InsertContactsToAddressBook", connection);
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("stmnt", "Update");
+                        command.Parameters.AddWithValue("position", position);
+                        command.Parameters.AddWithValue("firstName", model.firstName);
+                        command.Parameters.AddWithValue("lastName", model.lastName);
+                        command.Parameters.AddWithValue("address", model.address);
+                        command.Parameters.AddWithValue("city", model.city);
+                        command.Parameters.AddWithValue("state", model.state);
+                        command.Parameters.AddWithValue("zip", model.zip);
+                        command.Parameters.AddWithValue("mobileNo", model.mobileNo);
+                        command.Parameters.AddWithValue("email", model.email);
+                        
+                        connection.Open();
+                        return command.ExecuteNonQuery();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("model is null ");
+                    return 0;
+                }
             }
-
-
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
             
         }
     }
