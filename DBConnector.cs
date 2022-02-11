@@ -17,6 +17,7 @@ namespace AddressBookUsingDB
         public abstract int Insert(AddressBookModel model);
 
         public abstract int Update(AddressBookModel model, String position);
+        public abstract int Delete(String position);
        
 }
 }

@@ -21,17 +21,18 @@ namespace AddressBookUsingDB
             model.email = "rohit665@gmail.com";
 
             DBConnector connector = new DBHandler();
-            //int flag=connector.Insert(model);
-            int flag = connector.Update(model, "rohit");
+            //----- Uc 3 -----
 
-            if (flag != 0)
-            {
-                Console.WriteLine("Data Inserted Successfully");
-            }
-            else
-            {
-                Console.WriteLine("Data Not Inserted ");
-            }
+            // int flag=connector.Insert(model);
+
+            //----- UC 4 ------
+
+            // int flag = connector.Update(model, "rohit");
+
+            //----- Uc5 -----
+
+            int flag = connector.Delete("sumit");
+
         }
     }
 }

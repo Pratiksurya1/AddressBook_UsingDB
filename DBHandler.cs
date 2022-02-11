@@ -9,6 +9,7 @@ namespace AddressBookUsingDB
 {
     internal class DBHandler : DBConnector
     {
+       
         public override int Insert(AddressBookModel model)
         {
             SqlConnection connection = GetDBConnection();
@@ -20,6 +21,7 @@ namespace AddressBookUsingDB
                     {
                         SqlCommand command = new SqlCommand("InsertContactsToAddressBook", connection);
                         command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("stmnt", "Insert");
                         command.Parameters.AddWithValue("firstName", model.firstName);
                         command.Parameters.AddWithValue("lastName", model.lastName);
                         command.Parameters.AddWithValue("address", model.address);
@@ -30,6 +32,7 @@ namespace AddressBookUsingDB
                         command.Parameters.AddWithValue("email", model.email);
                         connection.Open();
                         return command.ExecuteNonQuery();
+                        Console.WriteLine("Data Inserted Successfully");
                     }
                 }
                 else
@@ -72,6 +75,7 @@ namespace AddressBookUsingDB
                         
                         connection.Open();
                         return command.ExecuteNonQuery();
+                        Console.WriteLine("Data Update Successfully");
                     }
                 }
                 else
@@ -87,5 +91,28 @@ namespace AddressBookUsingDB
             }
             
         }
+        public override int Delete(string position)
+        {
+            SqlConnection connection = GetDBConnection();
+            try
+            {
+                    using (connection)
+                    {
+                        SqlCommand command = new SqlCommand("InsertContactsToAddressBook", connection);
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("stmnt", "Delete");
+                        command.Parameters.AddWithValue("position", position);
+                        connection.Open();
+                        return command.ExecuteNonQuery();
+                        Console.WriteLine("Data Delete Successfully");
+                    }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+
     }
 }
