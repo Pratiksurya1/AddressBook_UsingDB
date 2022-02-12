@@ -9,7 +9,7 @@ city varchar(15),
 state varchar(15),
 zip varchar(7),
 mobileNo varchar(10),
-email varchar(30)
+email varchar(30) 
 )
 
 SELECT * FROM address_book

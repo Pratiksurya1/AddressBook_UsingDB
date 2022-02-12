@@ -6,7 +6,7 @@ ALTER PROCEDURE [dbo].[InsertContactsToAddressBook]
 @city varchar(15)='',
 @state varchar(15)='',
 @zip varchar(7)='',
-@mobileNo varchar(10)='',
+@mobileNo varchar(10)='', 
 @email varchar(30)='',
 @stmnt varchar(20)='',
 @position varchar(20)=''
