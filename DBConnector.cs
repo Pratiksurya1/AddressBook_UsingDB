@@ -20,5 +20,5 @@ namespace AddressBookUsingDB
         public abstract void SelectByCityORState(String location);
         public abstract void SortByCityORState(String location);
        
-}
+    }
 }

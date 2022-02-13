@@ -38,4 +38,10 @@ IF @stmnt='Sortasc'
 BEGIN 
 SELECT * FROM address_book WHERE city=@city OR state=@state ORDER BY firstName ASC
 END
+
+IF @stmnt='GroupByType'
+BEGIN 
+SELECT * FROM address_book GROUP BY @position
+END
+
 END

@@ -185,7 +185,6 @@ namespace AddressBookUsingDB
                         {
                             count++;
                             Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}", reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString(), reader[7].ToString(), reader[8].ToString());
-
                         }
                         Console.WriteLine(count + " Person From " + location);
                     }
@@ -193,6 +192,44 @@ namespace AddressBookUsingDB
                     {
                         Console.WriteLine("No Data Found..");
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public void GroupBytype(String type)
+        {
+            SqlConnection connection = GetDBConnection();
+            try
+            {
+                using (connection)
+                {
+                    AddressBookModel model = new AddressBookModel();
+                    SqlCommand command = new SqlCommand("InsertContactsToAddressBook", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("position", type);
+                    command.Parameters.AddWithValue("stmnt", "GroupByType");
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        int count = 0;
+                        while (reader.Read())
+                        {
+                            count++;
+                            Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}", reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString(), reader[7].ToString(), reader[8].ToString());
+                        }
+                        Console.WriteLine(count + " Person is " + type);
+                    }
+                    else
+
+                        Console.WriteLine("No Data Found..");
                 }
             }
             catch (Exception ex)
