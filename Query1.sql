@@ -51,7 +51,22 @@ CREATE TABLE type_handler(
 info_Id INT FOREIGN KEY REFERENCES contact_info(contact_Id),
 con_type_Id INT FOREIGN KEY REFERENCES contact_type(type_Id),
 )
- 
+ ----check Uc6
+ SELECT * FROM contact_info WHERE city='pune' OR state='mharashtra'
+
+  ----check Uc7
+  SELECT COUNT(*) FROM contact_info WHERE city='pune' OR state='mharashtra'
+
+  ----check Uc8
+  SELECT * FROM contact_info WHERE city='pune' OR state='mharashtra' ORDER BY firstName ASC
+  
+  ----check Uc10
+  SELECT * FROM contact_info
+  FULL JOIN type_handler ON type_handler.info_Id=ci.contact_Id
+  FULL JOIN AddressBook ON AddressBook.bookID=ci.book_Id
+  GROUP BY (con_type_Id)
+
+
 INSERT INTO AddressBook(book_Name) VALUES('B')
 
 INSERT INTO contact_info(firstName,lastName,address,city,state,zip,mobileNo,email)VALUES('riya','kumar','m-8955','tarai','up','42259','9864553210','riya45@gmail.com')
@@ -60,8 +75,21 @@ INSERT INTO contact_type(contact_name)VALUES('friends'),('family'),('profession'
 
 INSERT INTO type_handler VALUES(1,2),(2,1),(1,3)
 
-SELECT ab.book_Name,ci.firstName,ci.lastName,city FROM AddressBook ab,contact_info ci
+----check Uc6
+ SELECT * FROM contact_info WHERE city='pune' OR state='mharashtra'
 
-FULL JOIN type_handler ON type_handler.info_Id=ci.contact_Id
+  ----check Uc7
+  SELECT COUNT(*) FROM contact_info WHERE city='pune' OR state='mharashtra'
 
-FULL JOIN AddressBook ON AddressBook.bookID=ci.book_Id
+  ----check Uc8
+  SELECT * FROM contact_info WHERE city='pune' OR state='mharashtra' ORDER BY firstName ASC
+  
+  ----check Uc10
+  SELECT * FROM contact_info
+  FULL JOIN type_handler ON type_handler.info_Id=ci.contact_Id
+  FULL JOIN AddressBook ON AddressBook.bookID=ci.book_Id
+  GROUP BY (con_type_Id)
+
+  SELECT ab.book_Name,ci.firstName,ci.lastName,city FROM AddressBook ab,contact_info ci
+  FULL JOIN type_handler ON type_handler.info_Id=ci.contact_Id
+  FULL JOIN AddressBook ON AddressBook.bookID=ci.book_Id
